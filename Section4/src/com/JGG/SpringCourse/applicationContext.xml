@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 23 -->
+    <!-- Define your beans here -->
+
+<!--23 try
+	<bean id="myCoach"
+		  class="com.JGG.SpringCourse.TrackCoach">
+	</bean>
+-->
+<!--I can change the bean to refer to the other class-->
+	<bean id="myCoach"
+		  class="com.JGG.SpringCourse.BaseballCoach">
+	</bean>
+
+	<!--31 new bean and new coach bean-->
+	<bean id="myFortune"
+		  class="com.JGG.SpringCourse.HappyFortuneService"/>
+
+	<bean id="myFortuneCoach"
+		  class="com.JGG.SpringCourse.BaseballCoach">
+		<constructor-arg ref="myFortune"/>
+	</bean>
+
+
+</beans>
+
+
+
+
+

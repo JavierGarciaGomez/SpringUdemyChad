@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="MyTomcatServer">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyTomcatServer</output-path>
+    <root id="archive" name="MyTomcatServer.war" />
+  </artifact>
+</component>
