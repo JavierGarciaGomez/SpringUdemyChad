@@ -5,6 +5,7 @@
       <configuration>
         <fileset id="fileset" name="ApplicationContext" removed="false">
           <file>file://$MODULE_DIR$/src/com/JGG/SpringCourse/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/com/JGG/SpringCourse/beanScope.xml</file>
         </fileset>
       </configuration>
     </facet>

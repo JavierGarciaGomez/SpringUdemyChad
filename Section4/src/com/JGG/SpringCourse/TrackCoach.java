@@ -27,4 +27,16 @@ public class TrackCoach implements Coach {
     public String getDailyFortune() {
         return fortuneService.getFortune();
     }
+
+    // 48 adding init and destryo beans methods
+    // add an init method
+    public void doInit(){
+        System.out.println("TRACK: Im in the INIT method");
+    }
+
+    // add a destroy methods
+    public void doDestroy(){
+        System.out.println("TRACK: Im in the DESTROY method");
+    }
+
 }

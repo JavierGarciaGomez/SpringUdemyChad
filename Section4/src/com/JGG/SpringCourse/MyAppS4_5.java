@@ -2,7 +2,7 @@ package com.JGG.SpringCourse;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class MyApp {
+public class MyAppS4_5 {
     public static void main(String[] args) {
         //19 No beans
         // create the object
