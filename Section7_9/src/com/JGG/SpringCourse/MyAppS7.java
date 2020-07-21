@@ -17,6 +17,12 @@ public class MyAppS7 {
         System.out.println(coach.getDailyWorkout());
 
         // close
+        // 61
+        System.out.println(coach.getDailyFortune());
+        //64 Setter injection
+        coach = context.getBean("baseballCoach65", Coach.class);
+        System.out.println(coach.getDailyFortune());
+
         context.close();
 
     }

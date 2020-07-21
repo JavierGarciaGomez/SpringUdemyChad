@@ -3,26 +3,26 @@ package com.JGG.SpringCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-//55 Default bean id
+//65
 @Component
-public class SoccerCoach implements Coach {
+public class BaseballCoach65 implements Coach {
+
+    private FortuneService fortuneService;
+    public BaseballCoach65() {
+    }
+
     @Override
     public String getDailyWorkout() {
         return this.getClass().getSimpleName()+"says: Practice your passes";
     }
-
-    // 61
-    private FortuneService fortuneService;
-
     @Override
     public String getDailyFortune() {
         return fortuneService.getFortune();
     }
 
-    /*// Constructor configuring the dependency injection... Its going
-     * to search for an implementation of the FortuneService (HappyFortuneService) and then inject it */
+    //64 Setter injection
     @Autowired
-    public SoccerCoach(FortuneService fortuneService) {
+    public void setFortuneService(FortuneService fortuneService) {
         this.fortuneService = fortuneService;
     }
 }
