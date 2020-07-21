@@ -22,8 +22,10 @@ public class TennisCoach implements Coach {
 
     /*// Constructor configuring the dependency injection... Its going
     * to search for an implementation of the FortuneService (HappyFortuneService) and then inject it */
+/*
     @Autowired
     public TennisCoach(FortuneService fortuneService) {
         this.fortuneService = fortuneService;
     }
+*/
 }
