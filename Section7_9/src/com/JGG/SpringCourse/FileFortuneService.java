@@ -2,6 +2,7 @@ package com.JGG.SpringCourse;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,14 +20,12 @@ public class FileFortuneService implements FortuneService {
     // create a random number generator
     private Random myRandom = new Random();
 
-    public FileFortuneService() {
-
+    //83
+    @PostConstruct
+    private void readFortune() {
+        System.out.println("83 IM in the init method of FileFortune Service");
         File file = new File(fileName);
-        System.out.println("Reading fortunes from file: " + file);
-        System.out.println("File exists: " + file.exists());
-        // initialize array list
         theFortunes = new ArrayList<String>();
-        // read fortunes from file
         try (BufferedReader br = new BufferedReader(
                 new FileReader(file))) {
             String tempLine;
@@ -36,6 +35,9 @@ public class FileFortuneService implements FortuneService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public FileFortuneService() {
     }
 
     @Override

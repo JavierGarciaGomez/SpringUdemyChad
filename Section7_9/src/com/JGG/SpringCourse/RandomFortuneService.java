@@ -2,6 +2,7 @@ package com.JGG.SpringCourse;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.Random;
 
 //70
@@ -13,6 +14,7 @@ public class RandomFortuneService implements FortuneService{
     Random random = new Random();
 
     @Override
+    @PostConstruct
     public String getFortune() {
         int index = random.nextInt(strings.length);
         return "Your random fortune is "+ strings[index];

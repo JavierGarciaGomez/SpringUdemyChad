@@ -2,10 +2,15 @@ package com.JGG.SpringCourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//75
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+//75 and 77
 @Component
+@Scope("singleton")
 public class TennisCoach75 implements Coach {
 
     @Autowired
@@ -18,6 +23,17 @@ public class TennisCoach75 implements Coach {
     @Override
     public String getDailyFortune() {
         return fortuneService.getFortune();
+    }
+
+    //81 init and destroy
+    @PostConstruct
+    public void init(){
+        System.out.println("IM IN INIT");
+    }
+
+    @PreDestroy
+    public void destroy(){
+        System.out.println("IM IN DESTROY");
     }
 
 }

@@ -2,8 +2,10 @@ package com.JGG.SpringCourse;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.annotation.PostConstruct;
+
 //54 Created
-public class MyAppS7 {
+public class MyAppS7_S8_S9 {
     public static void main(String[] args) {
         //read spring config file
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -42,6 +44,23 @@ public class MyAppS7 {
         - http://www.luv2code.com/downloads/udemy-spring-hibernate/solution-practice-activities.zip*/
         coach = context.getBean("tennisCoach75", Coach.class);
         System.out.println("75"+coach.getDailyFortune());
+        //77 Scope Annotation: prototype
+        coach = context.getBean("tennisCoach75", Coach.class);
+        Coach coach2 = context.getBean("tennisCoach75", Coach.class);
+        if (coach.equals(coach2)) System.out.println("They are the SAME coach");
+        else System.out.println("They are DIFFERENT coaches");
+
+        //81 initd and destroy. Same execution
+
+        //83
+/*
+        Practice Activity #6 - Bean Scopes with Annotations
+        1. Modify your file based fortune service to make use of the @PostConstruct annotation
+        2. In the @PostConstruct code, read the fortunes from a text file (.txt).
+       3. Test your application and verify your @PostConstruct code is being executed. Hint, add some println statements.
+*/
+        System.out.println(coach.getDailyFortune());
+
 
 
         context.close();
