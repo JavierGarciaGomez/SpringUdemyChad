@@ -11,6 +11,7 @@
           <element id="library" level="application" name="Spring-5.2.3.RELEASE" />
           <element id="library" level="application" name="Spring MVC-5.2.3.RELEASE" />
           <element id="library" level="application" name="SpringCourseJavaxServlet" />
+          <element id="library" level="application" name="org.hibernate.validator:hibernate-validator:6.1.5.Final" />
         </element>
       </element>
     </root>

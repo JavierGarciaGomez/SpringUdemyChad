@@ -1,6 +1,5 @@
 package com.JGG.controller;
 
-import com.JGG.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,12 +52,5 @@ public class HelloWorldController {
         System.out.println(student);
         return "student-confirmation";
     }
-
-
-
-
-
-
-
 
 }

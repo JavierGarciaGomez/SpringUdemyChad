@@ -12,6 +12,8 @@
 </head>
 <body>
 <%--123 To solve ambiguous--%>
-<a href="hello/showForm">Hello World form</a>
+<a href="hello/showForm">Section 12 and 13: Hello World form</a><br>
+<a href="hello/showForm">Sections 14: Student form</a><br>
+<a href="customer/showCustomerForm">Sections 15: Customer form</a><br>
 </body>
 </html>

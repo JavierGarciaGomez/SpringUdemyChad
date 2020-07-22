@@ -1,4 +1,4 @@
-package com.JGG;
+package com.JGG.controller;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -76,6 +76,7 @@ public class Student {
                 ", operatingSystem=" + Arrays.toString(operatingSystem) +
                 '}';
     }
+
 
     public String getSex() {
         return sex;

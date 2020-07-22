@@ -26,5 +26,6 @@
     <orderEntry type="library" name="Spring MVC-5.2.3.RELEASE" level="application" />
     <orderEntry type="library" name="SpringCourseJavaxServlet" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.37" level="application_server_libraries" />
+    <orderEntry type="library" name="org.hibernate.validator:hibernate-validator:6.1.5.Final" level="application" />
   </component>
 </module>
