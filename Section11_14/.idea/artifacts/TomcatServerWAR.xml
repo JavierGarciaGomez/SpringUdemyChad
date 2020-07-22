@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TomcatServerWAR">
+    <output-path>$PROJECT_DIR$/out/artifacts/TomcatServerWAR</output-path>
+    <root id="archive" name="TomcatServerWAR.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="application" name="Spring" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

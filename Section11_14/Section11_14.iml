@@ -12,11 +12,7 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="fileset" name="Spring Mvc Demo Servlet" removed="false">
-          <file>file://$MODULE_DIR$/web/WEB-INF/spring-mvc-demo-servlet.xml</file>
-        </fileset>
-      </configuration>
+      <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
@@ -27,9 +23,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.37" level="application_server_libraries" />
-    <orderEntry type="library" name="Spring-Api" level="application" />
-    <orderEntry type="library" name="Spring" level="application" />
     <orderEntry type="library" name="javadoc-api" level="application" />
-    <orderEntry type="library" name="SpringCourseJavaxServlet" level="application" />
+    <orderEntry type="library" name="Spring5.2.7" level="application" />
+    <orderEntry type="library" name="Spring MVC-5.2.7 Udemy" level="application" />
   </component>
 </module>
