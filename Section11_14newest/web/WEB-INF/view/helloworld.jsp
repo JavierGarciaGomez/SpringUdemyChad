@@ -23,10 +23,13 @@
 
 <br><br>
 Passed as: param.studentName
-Student name: ${param.studentName}
+Student name: ${param.studentName}<br><br>
 <br><br>
 <%--116 --%>
-Passed with the HelloWorldController: ${message}
+116. Passed with the HelloWorldController and a uppercase: ${message} <br><br>
+120. Getting the name with HttpRequest: ${firstName} <br><br>
+120. Getting the lastname with HttpRequest: ${lastName} <br><br>
+
 
 </body>
 

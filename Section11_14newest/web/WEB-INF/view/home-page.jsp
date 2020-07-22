@@ -11,6 +11,7 @@
     <title>Home page</title>
 </head>
 <body>
-<a href="showForm">Hello World form</a>
+<%--123 To solve ambiguous--%>
+<a href="hello/showForm">Hello World form</a>
 </body>
 </html>
