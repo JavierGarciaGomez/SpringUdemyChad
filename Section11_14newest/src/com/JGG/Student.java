@@ -1,5 +1,6 @@
 package com.JGG;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 //
@@ -11,6 +12,8 @@ public class Student {
     // 132
     private LinkedHashMap<String, String> countryOptions;
     private String countryLoaded;
+    private String sex;
+    private String[] operatingSystem;
 
     public Student() {
         countryOptions=new LinkedHashMap<>();
@@ -69,10 +72,25 @@ public class Student {
                 ", country='" + country + '\'' +
                 ", countryOptions=" + countryOptions +
                 ", countryLoaded='" + countryLoaded + '\'' +
+                ", sex='" + sex + '\'' +
+                ", operatingSystem=" + Arrays.toString(operatingSystem) +
                 '}';
     }
 
+    public String getSex() {
+        return sex;
+    }
 
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
+    public String[] getOperatingSystem() {
+        return operatingSystem;
+    }
+
+    public void setOperatingSystem(String[] operatingSystem) {
+        this.operatingSystem = operatingSystem;
+    }
 }
 

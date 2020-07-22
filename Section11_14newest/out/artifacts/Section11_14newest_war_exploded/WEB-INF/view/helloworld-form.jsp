@@ -46,6 +46,15 @@
         <form:options items="${student.countryOptions}"/>
     </form:select>
     <br><br>
+    Sex:
+    <form:radiobutton path="sex" value="Male" label="Male"/>
+    <form:radiobutton path="sex" value="Female" label="Female"/>
+    <br><br>
+    Operating System:
+    Linux<form:checkbox path="operatingSystem" value="Linux"/>
+    Windows <form:checkbox path="operatingSystem" value="Windows"/>
+    Mac Os <form:checkbox path="operatingSystem" value="Mac OS"/>
+    <br><br>
     <input type="submit" value="Submit">
 </form:form>
 
