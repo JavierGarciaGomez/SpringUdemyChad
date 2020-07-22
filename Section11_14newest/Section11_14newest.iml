@@ -24,5 +24,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Spring-5.2.3.RELEASE" level="application" />
     <orderEntry type="library" name="Spring MVC-5.2.3.RELEASE" level="application" />
+    <orderEntry type="library" name="SpringCourseJavaxServlet" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.37" level="application_server_libraries" />
   </component>
 </module>

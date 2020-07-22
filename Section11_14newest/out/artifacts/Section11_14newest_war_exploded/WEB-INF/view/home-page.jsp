@@ -11,6 +11,6 @@
     <title>Home page</title>
 </head>
 <body>
-Testing home page
+<a href="showForm">Hello World form</a>
 </body>
 </html>
