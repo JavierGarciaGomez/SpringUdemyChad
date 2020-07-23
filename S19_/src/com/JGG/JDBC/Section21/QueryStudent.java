@@ -19,7 +19,7 @@ public class QueryStudent {
             session.beginTransaction();
 
             System.out.println("Query all students");
-            List<Student> studentList=session.createQuery("from Student").getResultList();
+            List<Student> studentList=session.createQuery("from Student ").getResultList();
             displayStudents(studentList);
 
             System.out.println("Query students lastname=Garcia");

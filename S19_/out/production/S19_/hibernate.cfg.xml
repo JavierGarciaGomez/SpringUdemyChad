@@ -24,6 +24,9 @@
 		<!-- Set the current session context -->
 		<property name="current_session_context_class">thread</property>
 
+        <!--        mapping-->
+        <mapping class="com.JGG.JDBC.Section21.Student"/>
+        <mapping class="com.JGG.JDBC.Section21exercise.Employee"/>
     </session-factory>
 
 </hibernate-configuration>

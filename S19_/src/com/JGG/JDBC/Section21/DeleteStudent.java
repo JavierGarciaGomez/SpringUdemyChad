@@ -4,9 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class UpdateStudent {
+public class DeleteStudent {
 
-    //198
+    //199
     public static void main(String[] args) {
         SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Student.class).buildSessionFactory();
         Session session=factory.getCurrentSession();
@@ -16,9 +16,15 @@ public class UpdateStudent {
             session.beginTransaction();
             System.out.println("\nGetting student with id: "+studentId);
             Student student=session.get(Student.class, studentId);
-            System.out.println("Updating student");
-            student.setFirstName("Scooby");
+            System.out.println("Deleting student");
             System.out.println("Get complete: "+student);
+            session.delete(student);
+
+            /*
+            * Another way:
+            * session.createQuery("delete from Employee where id=2").executeUpdate();
+            * */
+
 
             //commit the transaction
             session.getTransaction().commit();
