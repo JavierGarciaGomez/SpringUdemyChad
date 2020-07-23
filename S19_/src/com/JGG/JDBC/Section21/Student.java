@@ -1,15 +1,13 @@
 package com.JGG.JDBC.Section21;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 //184
 @Entity
 @Table(name="student")
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 189ndicates that the persistence provider must assign primary keys for the entity using a database identity column.
     @Column(name="id")
     private int id;
 
