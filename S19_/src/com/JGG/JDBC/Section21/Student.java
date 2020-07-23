@@ -1,4 +1,4 @@
-package com.JGG.JDBC.Section20;
+package com.JGG.JDBC.Section21;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,7 +65,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Student20{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
