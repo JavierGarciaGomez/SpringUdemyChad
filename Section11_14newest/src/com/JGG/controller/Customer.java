@@ -1,5 +1,7 @@
 package com.JGG.controller;
 
+import com.JGG.controller.validation.CourseCodeValidator;
+
 import javax.validation.constraints.*;
 
 public class Customer {
@@ -61,6 +63,17 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
+    //167 Custom validation
+    private String courseCode;
 
+    // 168 It could be reformatted here
+    @CourseCodeValidator(prefixValue = "LAO", message = "It must start with LAO")
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
 }
 

@@ -19,6 +19,7 @@ First name: ${customer.firstName}<br>
 Last name: ${customer.lastName}<br>
 Free passess: ${customer.freePasses}
 Postal Code: ${customer.postalCode}
+Course Code: ${customer.courseCode}
 <br>
 </body>
 </html>
