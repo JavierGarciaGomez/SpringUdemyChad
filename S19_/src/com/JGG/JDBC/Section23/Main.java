@@ -38,12 +38,12 @@ public class Main {
                     getInstructorDetail();
                     break;
 
-                case 6:
-                    retrieveEmployee();
-                    break;
+                case 4:
+                    deleteWithCascade();
 
-                case 7:
-                    queryEmployees();
+
+                case 9:
+                    factory.close();
                     break;
 
 
@@ -57,14 +57,16 @@ public class Main {
 
     }
 
+
+
     private static void printOptions() {
         System.out.println(
                 "Escoge una de las siguientes opciones: " +
                         "\n1. Create a new Instructor" +
-                        "\n2. Retrieve an instructor with primary key" +
+                        "\n2. Delete instructor" +
                         "\n3. Get the instructor detail" +
-                        "\n4. Delete an object by primary key" +
-                        "\n5. Exit");
+                        "\n4. Delete with cascade" +
+                        "\n9. Exit");
     }
 
     //212
@@ -123,6 +125,7 @@ public class Main {
         System.out.println("Deleted correctly");
     }
 
+    //217
     private static void getInstructorDetail() {
         System.out.println("GET INSTRUCTOR DETAIL");
 
@@ -137,6 +140,7 @@ public class Main {
             //Get the associate instructor
             System.out.println("Instructor: "+instructorDetail.getInstructor());
             // Commit
+            session.getTransaction().commit();
 
         } catch (NullPointerException ignore){
 
@@ -144,6 +148,31 @@ public class Main {
             session.close();
         }
 
+    }
+
+    //219Cascade delete
+    private static void deleteWithCascade() {
+        System.out.println("GET INSTRUCTOR DETAIL");
+
+        System.out.println("Insert the id");
+        int id = Integer.parseInt(scanner.nextLine());
+        session = factory.getCurrentSession();
+        //Get instructorDetail by pK
+        try{
+            session.beginTransaction();
+            InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
+            System.out.println("Instructor detail: "+instructorDetail);
+            //Get the associate instructor
+            System.out.println("Instructor: "+instructorDetail.getInstructor());
+            // Deletion
+            session.delete(instructorDetail);
+            session.getTransaction().commit();
+
+        } catch (NullPointerException ignore){
+
+        }finally {
+            session.close();
+        }
     }
 
 
