@@ -1,6 +1,5 @@
-package com.JGG.JDBC.Section23.Section21exercise;
+package com.JGG.JDBC.Section23;
 
-import com.JGG.JDBC.Section21.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,17 +14,23 @@ public class Main {
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
-        // Create session factory
-        factory = new Configuration().configure("hibernate21_22.cfg.xml")
-                .addAnnotatedClass(Student.class).buildSessionFactory();
+        // 212 Create session factory
+        factory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Instructor.class)
+                .addAnnotatedClass(InstructorDetail.class).
+                        buildSessionFactory();
 
         int selection = 0;
         do {
             printOptions();
             selection = Integer.parseInt(scanner.nextLine());
             switch (selection) {
-                case 5:
-                    createEmployee();
+                case 1:
+                    createInstructor();
+                    break;
+
+                case 2:
+                    deleteInstructor();
                     break;
 
                 case 6:
@@ -35,14 +40,11 @@ public class Main {
                 case 7:
                     queryEmployees();
                     break;
-                    
-                case 8:
-                    deleteEmployee();
-                    break;
-                    
+
+
                 default:
                     break;
-                    
+
 
             }
         } while (selection != 9);
@@ -51,38 +53,72 @@ public class Main {
     }
 
 
-
     private static void printOptions() {
         System.out.println(
                 "Escoge una de las siguientes opciones: " +
-                        "\n5. Create a new employee" +
-                        "\n6. Retrieve an employee with primary key" +
-                        "\n7. Query objects to find employees for a given company" +
-                        "\n8. Delete an object by primary key" +
-                        "\n9. Exit");
+                        "\n1. Create a new Instructor" +
+                        "\n2. Retrieve an instructor with primary key" +
+                        "\n3. Query objects to find employees for a given company" +
+                        "\n4. Delete an object by primary key" +
+                        "\n5. Exit");
     }
 
-    private static void createEmployee() {
-        System.out.println("CREATE A NEW EMPLOYEE");
-
+    //212
+    private static void createInstructor() {
+        System.out.println("CREATE A NEW INSTRUCTOR");
         System.out.println("Insert the first name");
         String firstName = scanner.nextLine();
         System.out.println("Insert the last name");
         String lastName = scanner.nextLine();
-        System.out.println("Insert the company name");
-        String company = scanner.nextLine();
+        System.out.println("Insert the email");
+        String email = scanner.nextLine();
+        System.out.println("Insert the Youtube site");
+        String youtube = scanner.nextLine();
+        System.out.println("Insert the Hobby");
+        String hobby = scanner.nextLine();
 
         session = factory.getCurrentSession();
-        com.JGG.JDBC.Section23.Section21exercise.Employee employee = new com.JGG.JDBC.Section23.Section21exercise.Employee(firstName, lastName, company);
+        // Create the objects
+        Instructor instructor = new Instructor(firstName, lastName, email);
+        InstructorDetail instructorDetail = new InstructorDetail(youtube, hobby);
+
+        //Associate the objects
+        instructor.setInstructorDetail(instructorDetail);
+
         //start a transaction
         session.beginTransaction();
-        //save the  object
-        session.save(employee);
+
+        //save the  object. This will also save the details objects because of the CascadeType.All
+        System.out.println("Saving instructor "+instructor);
+        session.save(instructor);
+
         //commit transaction
         session.getTransaction().commit();
-        System.out.println("Saved correctly: " + employee);
+        System.out.println("Saved correctly: " + instructor);
 
     }
+
+    //214
+    private static void deleteInstructor() {
+
+        System.out.println("DELETE AN INSTRUCTOR");
+        System.out.println("Insert the id");
+        int id = Integer.parseInt(scanner.nextLine());
+        session = factory.getCurrentSession();
+        session.beginTransaction();
+        //Get instructor by pK
+        Instructor instructor = session.get(Instructor.class, id);
+        System.out.println("Found instructor: "+instructor);
+        //Delete de instructor
+        if(instructor!=null){
+            System.out.println("Deleting "+instructor);
+            session.delete(instructor);
+        }
+        // Commit query
+        session.getTransaction().commit();
+        System.out.println("Deleted correctly");
+    }
+
 
     private static void retrieveEmployee() {
         System.out.println("RETRIEVE A EMPLOYEE");
@@ -93,7 +129,7 @@ public class Main {
         session = factory.getCurrentSession();
         //start a transaction
         session.beginTransaction();
-        com.JGG.JDBC.Section23.Section21exercise.Employee employee = session.get(com.JGG.JDBC.Section23.Section21exercise.Employee.class, id);
+        Employee employee = session.get(Employee.class, id);
         System.out.println("Retrieved correctly: " + employee);
         session.getTransaction().commit();
     }
@@ -106,24 +142,11 @@ public class Main {
 
         session = factory.getCurrentSession();
         session.beginTransaction();
-        List<com.JGG.JDBC.Section23.Section21exercise.Employee> employees=session.createQuery("from Employee where company='"+company+"'").getResultList();
+        List<Employee> employees = session.createQuery("from Employee where company='" + company + "'").getResultList();
         System.out.println("Retrieved correctly: " + employees);
         session.getTransaction().commit();
     }
 
-    private static void deleteEmployee() {
-
-        System.out.println("DELETE A EMPLOYEE");
-
-        System.out.println("Insert the id");
-        int id = Integer.parseInt(scanner.nextLine());
-
-        session = factory.getCurrentSession();
-        session.beginTransaction();
-        session.createQuery("delete from Employee where id="+id).executeUpdate();
-        session.getTransaction().commit();
-        System.out.println("Deleted correctly");
-    }
 
 
 }

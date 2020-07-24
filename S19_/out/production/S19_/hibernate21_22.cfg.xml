@@ -8,7 +8,7 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/hb-01-one-to-one-uni?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hb_student_tracker?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="connection.username">hbstudent</property>
         <property name="connection.password">hbstudent</property>
 
@@ -25,8 +25,8 @@
 		<property name="current_session_context_class">thread</property>
 
         <!--        mapping-->
-        <mapping class="com.JGG.JDBC.Section23.Instructor"/>
-        <mapping class="com.JGG.JDBC.Section23.InstructorDetail"/>
+        <mapping class="com.JGG.JDBC.Section21.Student"/>
+        <mapping class="com.JGG.JDBC.Section21exercise.Employee"/>
     </session-factory>
 
 </hibernate-configuration>

@@ -8,7 +8,7 @@ public class DeleteStudent {
 
     //199
     public static void main(String[] args) {
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Student.class).buildSessionFactory();
+        SessionFactory factory = new Configuration().configure("hibernate21_22.cfg.xml").addAnnotatedClass(Student.class).buildSessionFactory();
         Session session=factory.getCurrentSession();
         
         try{

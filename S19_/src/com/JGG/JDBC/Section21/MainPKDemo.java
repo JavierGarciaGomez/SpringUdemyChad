@@ -10,7 +10,7 @@ public class MainPKDemo {
     //187
     public static void main(String[] args) {
         //Create session factory
-        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
+        SessionFactory factory = new Configuration().configure("hibernate21_22.cfg.xml")
                 .addAnnotatedClass(Student.class).buildSessionFactory();
         //Create session
         Session session=factory.getCurrentSession();

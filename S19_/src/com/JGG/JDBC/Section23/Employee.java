@@ -1,4 +1,4 @@
-package com.JGG.JDBC.Section23.Section21exercise;
+package com.JGG.JDBC.Section23;
 
 import javax.persistence.*;
 

@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         // Create session factory
-        factory = new Configuration().configure("hibernate.cfg.xml")
+        factory = new Configuration().configure("hibernate21_22.cfg.xml")
                 .addAnnotatedClass(Student.class).buildSessionFactory();
 
         int selection = 0;

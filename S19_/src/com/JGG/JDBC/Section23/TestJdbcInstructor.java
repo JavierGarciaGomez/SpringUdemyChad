@@ -1,11 +1,11 @@
-package com.JGG.JDBC;
+package com.JGG.JDBC.Section23;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class TestJdbc {
+public class TestJdbcInstructor {
     public static void main(String[] args) {
-        String jdbcURL = "jdbc:mysql://localhost:3306/hb_student_tracker?useSSL=false";
+        String jdbcURL = "jdbc:mysql://localhost:3306/hb-01-one-to-one-uni?useSSL=false";
         String user = "hbstudent";
         String pass = "hbstudent";
         try{
