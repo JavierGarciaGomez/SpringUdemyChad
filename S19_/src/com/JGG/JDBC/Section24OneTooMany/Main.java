@@ -1,11 +1,9 @@
 package com.JGG.JDBC.Section24OneTooMany;
 
-import com.JGG.JDBC.Section21exercise.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -18,10 +16,11 @@ public class Main {
         // 212 Create session factory
         factory = new Configuration().configure("hibernate.cfg24.xml")
                 .addAnnotatedClass(Instructor.class)
-                .addAnnotatedClass(InstructorDetail.class).
+                .addAnnotatedClass(InstructorDetail.class)
+                .addAnnotatedClass(Course.class).
                         buildSessionFactory();
 
-        int selection = 0;
+        int selection;
         do {
             printOptions();
             selection = Integer.parseInt(scanner.nextLine());
@@ -40,7 +39,19 @@ public class Main {
 
                 case 4:
                     deleteWithCascade();
+                    break;
 
+                case 5:
+                    createCourse();
+                    break;
+
+                case 6:
+                    retrieveInstructorCourses();
+                    break;
+
+                case 7:
+                    deleteCourse();
+                    break;
 
                 case 9:
                     factory.close();
@@ -58,7 +69,6 @@ public class Main {
     }
 
 
-
     private static void printOptions() {
         System.out.println(
                 "Escoge una de las siguientes opciones: " +
@@ -66,6 +76,9 @@ public class Main {
                         "\n2. Delete instructor" +
                         "\n3. Get the instructor detail" +
                         "\n4. Delete with cascade" +
+                        "\n5. Create course" +
+                        "\n6. Retrieve instructor courses" +
+                        "\n7. Delete a course" +
                         "\n9. Exit");
     }
 
@@ -83,24 +96,30 @@ public class Main {
         System.out.println("Insert the Hobby");
         String hobby = scanner.nextLine();
 
-        session = factory.getCurrentSession();
-        // Create the objects
-        Instructor instructor = new Instructor(firstName, lastName, email);
-        InstructorDetail instructorDetail = new InstructorDetail(youtube, hobby);
+        try {
 
-        //Associate the objects
-        instructor.setInstructorDetail(instructorDetail);
+            session = factory.getCurrentSession();
+            // Create the objects
+            Instructor instructor = new Instructor(firstName, lastName, email);
+            InstructorDetail instructorDetail = new InstructorDetail(youtube, hobby);
 
-        //start a transaction
-        session.beginTransaction();
+            //Associate the objects
+            instructor.setInstructorDetail(instructorDetail);
 
-        //save the  object. This will also save the details objects because of the CascadeType.All
-        System.out.println("Saving instructor " + instructor);
-        session.save(instructor);
+            //start a transaction
+            session.beginTransaction();
 
-        //commit transaction
-        session.getTransaction().commit();
-        System.out.println("Saved correctly: " + instructor);
+            //save the  object. This will also save the details objects because of the CascadeType.All
+            System.out.println("Saving instructor " + instructor);
+            session.save(instructor);
+
+            //commit transaction
+            session.getTransaction().commit();
+            System.out.println("Saved correctly: " + instructor);
+
+        } finally {
+            session.close();
+        }
 
     }
 
@@ -133,18 +152,18 @@ public class Main {
         int id = Integer.parseInt(scanner.nextLine());
         session = factory.getCurrentSession();
         //Get instructorDetail by pK
-        try{
+        try {
             session.beginTransaction();
             InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
-            System.out.println("Instructor detail: "+instructorDetail);
+            System.out.println("Instructor detail: " + instructorDetail);
             //Get the associate instructor
-            System.out.println("Instructor: "+instructorDetail.getInstructor());
+            System.out.println("Instructor: " + instructorDetail.getInstructor());
             // Commit
             session.getTransaction().commit();
 
-        } catch (NullPointerException ignore){
+        } catch (NullPointerException ignore) {
 
-        }finally {
+        } finally {
             session.close();
         }
 
@@ -158,50 +177,98 @@ public class Main {
         int id = Integer.parseInt(scanner.nextLine());
         session = factory.getCurrentSession();
         //Get instructorDetail by pK
-        try{
+        try {
             session.beginTransaction();
             InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
-            System.out.println("Instructor detail: "+instructorDetail);
+            System.out.println("Instructor detail: " + instructorDetail);
             //Get the associate instructor
-            System.out.println("Instructor: "+instructorDetail.getInstructor());
+            System.out.println("Instructor: " + instructorDetail.getInstructor());
             // Deletion
             session.delete(instructorDetail);
             session.getTransaction().commit();
 
-        } catch (NullPointerException ignore){
+        } catch (NullPointerException ignore) {
 
-        }finally {
+        } finally {
             session.close();
         }
     }
 
+    //229
+    private static void createCourse() {
 
-    private static void retrieveEmployee() {
-        System.out.println("RETRIEVE A EMPLOYEE");
+        try {
+            System.out.println("CREATE A NEW COURSE");
+            System.out.println("Insert the id of the instructor");
+            int id = Integer.parseInt(scanner.nextLine());
+            session = factory.getCurrentSession();
+            //Get instructorDetail by pK
+            session.beginTransaction();
+            Instructor instructor = session.get(Instructor.class, id);
+            System.out.println("Instructor retrieved: " + instructor);
+            // create the course
+            System.out.println("Insert the title");
+            String title = scanner.nextLine();
+            Course course = new Course(title);
+            // Add the course to the instructor
+            instructor.addCourse(course);
+            session.save(course);
 
-        System.out.println("Insert the id");
-        int id = Integer.parseInt(scanner.nextLine());
+            session.getTransaction().commit();
 
-        session = factory.getCurrentSession();
-        //start a transaction
-        session.beginTransaction();
-        Employee employee = session.get(Employee.class, id);
-        System.out.println("Retrieved correctly: " + employee);
-        session.getTransaction().commit();
+        } catch (NullPointerException ignore) {
+
+        } finally {
+            session.close();
+        }
     }
 
-    private static void queryEmployees() {
-        System.out.println("QUERY EMPLOYEES");
+    //230
+    private static void retrieveInstructorCourses() {
 
-        System.out.println("Insert the company name");
-        String company = scanner.nextLine();
+        try {
+            System.out.println("RETRIEVE INSTRUCTOR COURSES");
+            System.out.println("Insert the id of the instructor");
+            int id = Integer.parseInt(scanner.nextLine());
+            session = factory.getCurrentSession();
+            //Get instructorDetail by pK
+            session.beginTransaction();
+            Instructor instructor = session.get(Instructor.class, id);
+            System.out.println("Instructor retrieved: " + instructor);
+            // create the course
+            System.out.println(instructor.getCourses());
+            session.getTransaction().commit();
 
-        session = factory.getCurrentSession();
-        session.beginTransaction();
-        List<Employee> employees = session.createQuery("from Employee where company='" + company + "'").getResultList();
-        System.out.println("Retrieved correctly: " + employees);
-        session.getTransaction().commit();
+        } catch (NullPointerException ignore) {
+
+        } finally {
+            session.close();
+        }
     }
+
+    //231
+    private static void deleteCourse() {
+
+        try {
+            System.out.println("DELETE A COURSE");
+            System.out.println("Insert the id of the course");
+            int id = Integer.parseInt(scanner.nextLine());
+            session = factory.getCurrentSession();
+            //Get instructorDetail by pK
+            session.beginTransaction();
+            Course course = session.get(Course.class, id);
+            System.out.println("Course retrieved: " + course);
+            // Delete the course
+            session.delete(course);
+            session.getTransaction().commit();
+
+        } catch (NullPointerException ignore) {
+
+        } finally {
+            session.close();
+        }
+    }
+
 
 
 }
