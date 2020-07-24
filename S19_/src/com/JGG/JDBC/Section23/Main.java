@@ -1,5 +1,6 @@
 package com.JGG.JDBC.Section23;
 
+import com.JGG.JDBC.Section21exercise.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         // 212 Create session factory
-        factory = new Configuration().configure("hibernate.cfg.xml")
+        factory = new Configuration().configure("hibernate.cfg23_uni.xml")
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class).
                         buildSessionFactory();
@@ -31,6 +32,10 @@ public class Main {
 
                 case 2:
                     deleteInstructor();
+                    break;
+
+                case 3:
+                    getInstructorDetail();
                     break;
 
                 case 6:
@@ -52,13 +57,12 @@ public class Main {
 
     }
 
-
     private static void printOptions() {
         System.out.println(
                 "Escoge una de las siguientes opciones: " +
                         "\n1. Create a new Instructor" +
                         "\n2. Retrieve an instructor with primary key" +
-                        "\n3. Query objects to find employees for a given company" +
+                        "\n3. Get the instructor detail" +
                         "\n4. Delete an object by primary key" +
                         "\n5. Exit");
     }
@@ -89,7 +93,7 @@ public class Main {
         session.beginTransaction();
 
         //save the  object. This will also save the details objects because of the CascadeType.All
-        System.out.println("Saving instructor "+instructor);
+        System.out.println("Saving instructor " + instructor);
         session.save(instructor);
 
         //commit transaction
@@ -108,15 +112,38 @@ public class Main {
         session.beginTransaction();
         //Get instructor by pK
         Instructor instructor = session.get(Instructor.class, id);
-        System.out.println("Found instructor: "+instructor);
+        System.out.println("Found instructor: " + instructor);
         //Delete de instructor
-        if(instructor!=null){
-            System.out.println("Deleting "+instructor);
+        if (instructor != null) {
+            System.out.println("Deleting " + instructor);
             session.delete(instructor);
         }
         // Commit query
         session.getTransaction().commit();
         System.out.println("Deleted correctly");
+    }
+
+    private static void getInstructorDetail() {
+        System.out.println("GET INSTRUCTOR DETAIL");
+
+        System.out.println("Insert the id");
+        int id = Integer.parseInt(scanner.nextLine());
+        session = factory.getCurrentSession();
+        //Get instructorDetail by pK
+        try{
+            session.beginTransaction();
+            InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
+            System.out.println("Instructor detail: "+instructorDetail);
+            //Get the associate instructor
+            System.out.println("Instructor: "+instructorDetail.getInstructor());
+            // Commit
+
+        } catch (NullPointerException ignore){
+
+        }finally {
+            session.close();
+        }
+
     }
 
 
@@ -146,7 +173,6 @@ public class Main {
         System.out.println("Retrieved correctly: " + employees);
         session.getTransaction().commit();
     }
-
 
 
 }

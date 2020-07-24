@@ -3,6 +3,7 @@ package com.JGG.JDBC.Section23;
 import javax.persistence.*;
 
 //210anotate the class as an entity and map to db table
+//216 Updated to bidireccional
 @Entity
 @Table(name="instructor_detail")
 public class InstructorDetail {
@@ -18,6 +19,11 @@ public class InstructorDetail {
 
     @Column(name="hobby")
     private String hobby;
+
+    //216 Add new field for instructor
+
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    private Instructor instructor;
 
     //create constructors
     public InstructorDetail() {
@@ -51,6 +57,14 @@ public class InstructorDetail {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     //to string
