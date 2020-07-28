@@ -5,9 +5,11 @@
       <configuration>
         <datasource-map>
           <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="hibernate.cfg23_uni.xml" />
           <unit-entry name="hibernate.cfg24.xml" />
           <unit-entry name="hibernate.cfg25.xml" />
           <unit-entry name="hibernate.cfg26.xml" />
+          <unit-entry name="hibernate21_22.cfg.xml" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfg23_bi.xml" />
