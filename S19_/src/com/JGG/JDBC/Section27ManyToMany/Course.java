@@ -6,25 +6,36 @@ import java.util.List;
 
 //225
 @Entity
-@Table(name="course")
+@Table(name = "course")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn (name="instructor_id")
+    @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
     //245
     @OneToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.ALL})
-    @JoinColumn(name="course_id")
+    @JoinColumn(name = "course_id")
     private List<Review> reviews;
+
+
+    //252, 253
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(
+            name="course_student", // table name
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Student> students;
 
 
     // Constructors
@@ -67,14 +78,30 @@ public class Course {
         this.reviews = courses;
     }
 
-    // Convenience method
+    public List<Student> getStudents() {
+        return students;
+    }
 
-    public void addReview(Review review){
-        if(reviews==null){
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    // Convenience method review
+    public void addReview(Review review) {
+        if (reviews == null) {
             reviews = new ArrayList<Review>();
         }
         reviews.add(review);
     }
+
+    // Convenience method student
+    public void addStudent(Student student) {
+        if (students == null) {
+            students = new ArrayList<Student>();
+        }
+        students.add(student);
+    }
+
 
     @Override
     public String toString() {

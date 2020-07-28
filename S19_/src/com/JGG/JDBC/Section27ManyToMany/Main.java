@@ -14,10 +14,11 @@ public class Main {
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
         // 212 Create session factory
-        factory = new Configuration().configure("hibernate.cfg26.xml")
+        factory = new Configuration().configure("hibernate.cfg27.xml")
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
                 .addAnnotatedClass(Course.class).
+                        addAnnotatedClass(Student.class).
                         addAnnotatedClass(Review.class).
                         buildSessionFactory();
 
@@ -66,6 +67,14 @@ public class Main {
                     deleteReview();
                     break;
 
+                case 11:
+                    createStudent();
+                    break;
+
+                case 12:
+                    addStudentToCourse();
+                    break;
+
                 case 0:
                     factory.close();
                     break;
@@ -82,7 +91,6 @@ public class Main {
     }
 
 
-
     private static void printOptions() {
         System.out.println(
                 "Escoge una de las siguientes opciones: " +
@@ -96,6 +104,8 @@ public class Main {
                         "\n8. Add review" +
                         "\n9. Get reviews" +
                         "\n10. Delete reviews" +
+                        "\n11. Create student" +
+                        "\n12. Add student to course" +
                         "\n0. Exit");
     }
 
@@ -321,7 +331,7 @@ public class Main {
             //Get instructorDetail by pK
             session.beginTransaction();
             Course course = session.get(Course.class, id);
-            System.out.println("\nCourse retrieved: " + course+"\n");
+            System.out.println("\nCourse retrieved: " + course + "\n");
             // create the course
             System.out.println(course.getReviews());
             session.getTransaction().commit();
@@ -352,6 +362,57 @@ public class Main {
         }
     }
 
+    //255
+    private static void createStudent() {
+        try {
+            System.out.println("CREATE A NEW STUDENT");
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            System.out.println("Insert the name");
+            String firstName = scanner.nextLine();
+            System.out.println("Insert the last name");
+            String lastName = scanner.nextLine();
+            System.out.println("Insert the email");
+            String email = scanner.nextLine();
+
+            Student student = new Student(firstName, lastName, email);
+
+            session.save(student);
+            session.getTransaction().commit();
+
+        } catch (NullPointerException ignore) {
+
+        } finally {
+            session.close();
+        }
+    }
+
+    //255
+    private static void addStudentToCourse() {
+        try {
+            System.out.println("ADD A STUDENT TO A COURSE");
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            System.out.println("Insert the id of the course");
+            int idCourse = Integer.parseInt(scanner.nextLine());
+            Course course = session.get(Course.class, idCourse);
+            System.out.println("Course retrieved: " + course);
+            // Add the student
+            System.out.println("Insert the id of the student");
+            int idStudent = Integer.parseInt(scanner.nextLine());
+            Student student = session.get(Student.class, idStudent);
+            System.out.println("Student retrieved: " + student);
+
+            course.addStudent(student);
+            session.save(course);
+            session.getTransaction().commit();
+
+        } catch (NullPointerException ignore) {
+
+        } finally {
+            session.close();
+        }
+    }
 
 
 }
