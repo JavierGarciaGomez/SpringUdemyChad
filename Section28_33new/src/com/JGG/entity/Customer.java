@@ -1,4 +1,4 @@
-package com.JGG.controller.entity;
+package com.JGG.entity;
 
 import javax.persistence.*;
 
@@ -13,19 +13,15 @@ public class Customer {
 
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "email")
     private String email;
 
     public Customer() {
-    }
 
-    public Customer(int id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
     }
 
     public int getId() {
@@ -62,11 +58,12 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
     }
+
 }
+
+
+
+
+
