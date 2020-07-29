@@ -34,6 +34,11 @@
 
     <div id="content">
 
+        <%--        293 Adding button--%>
+        <input type="button" value="Add Customer"
+               onclick="window.location.href='showFormForAdd'; return false;"
+               class="add-button">
+
         <!--  add our html table here -->
 
         <table>
