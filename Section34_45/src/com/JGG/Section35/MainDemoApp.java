@@ -26,6 +26,21 @@ public class MainDemoApp {
         System.out.println("*********326**********");
         accountDao.addAccountBoolean();
 
+        //328.
+        System.out.println("\n*********Section 37**********");
+        System.out.println("\n*********328**********");
+        Account account = new Account();
+        account.setName("Javier");
+        accountDao.addAccount(account);
+
+        //329
+        System.out.println("\n*********329**********");
+        Account account2 = new Account("Javier", "35");
+        accountDao.addAccount(account, true); // it doesnt execute because of multiple parameters
+
+        //329 executing any parameters
+        accountDao.doWork();
+
         // close the context
         context.close();
     }

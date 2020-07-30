@@ -1,5 +1,6 @@
 package com.JGG.Section35.DAO;
 
+import com.JGG.Section35.Account;
 import org.springframework.stereotype.Component;
 //321
 
@@ -17,6 +18,21 @@ public class AccountDAO {
     public boolean addAccountBoolean(){
         System.out.println("AN ADD ACCOUNT METHOD THAT RETURNS BOOLEAN");
         return false;
+    }
+
+    //328 Parameters
+    public void addAccount(Account account){
+        System.out.println(account);
+    }
+
+    //329 Parameters
+    public void addAccount(Account account, boolean vipFlag){
+        System.out.println(account);
+    }
+
+    //329
+    public void doWork(){
+        System.out.println(getClass()+"329. Executing doWork");
     }
 
 
