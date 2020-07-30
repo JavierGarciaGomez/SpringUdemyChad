@@ -11,4 +11,7 @@ public interface CustomerService {
 
     //298
     public void saveCustomer(Customer customer);
+
+    //304
+    Customer getCustomer(int id);
 }
