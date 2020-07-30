@@ -5,10 +5,13 @@ import java.util.List;
 
 public interface CustomerDAO {
 
-    List<Customer> getCustomers();
+    public List<Customer> getCustomers();
 
     //299
-    void saveCustomer(Customer customer);
+    public void saveCustomer(Customer customer);
 
-    Customer getCustomer(int id);
+    public Customer getCustomer(int id);
+
+    //311
+    public void deleteCustomer(int id);
 }
