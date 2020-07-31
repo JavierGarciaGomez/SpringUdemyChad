@@ -2,11 +2,14 @@ package com.JGG.Section40.aspect;
 
 import com.JGG.Section40.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 //331
 @Aspect
@@ -23,16 +26,16 @@ public class MyDemoLoggingAspect {
         System.out.println("\n======>>> 331. Executing @Before any Method with any parameters. Order 27");
 
         // 338 Display the method signature
-        MethodSignature methodSignature= (MethodSignature) joinPoint.getSignature();
-        System.out.println("Printing the parameter... Method: "+methodSignature);
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        System.out.println("Printing the parameter... Method: " + methodSignature);
 
         // 339. Display the method arguments
         System.out.println("339 DISPLAYING THE ARGS");
         Object[] args = joinPoint.getArgs();
-        for(Object tempArg:args){
+        for (Object tempArg : args) {
             System.out.println(tempArg);
-            if(tempArg instanceof Account){
-                System.out.println("name: "+((Account) tempArg).getName());
+            if (tempArg instanceof Account) {
+                System.out.println("name: " + ((Account) tempArg).getName());
             }
         }
 
@@ -41,10 +44,31 @@ public class MyDemoLoggingAspect {
 
     //334
     @Before("com.JGG.Section40.aspect.AopExpressions.forDaoPackageExcludingSetter()")
-    public void beforeDaoPackageExcludingSetter(){
+    public void beforeDaoPackageExcludingSetter() {
         System.out.println("\n======>>> 334. Print before methods excluding setters");
     }
 
+    //342 add a new advice for@AfterReturning on findAccountsMethod
+    @AfterReturning(
+            pointcut ="execution(* com.JGG.Section40.DAO.AccountDAO.findAccounts(..))",
+            returning ="result")
+    public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("342. EXECUTING AFTERRETURNMETHOD");
+        System.out.println("342. THE RESULT IS "+ result );
+        //344 lets post-process the data ... let's modify it :)
+        
+        // convet the account names to uppercase
+        convertAccountNamesToUpperCase(result);
+        System.out.println("344. THE RESULT IS "+ result );
+    }
+
+    private void convertAccountNamesToUpperCase(List<Account> result) {
+        for(Account account:result){
+            String upperName = account.getName().toUpperCase();
+            account.setName(upperName);
+        }
+    }
 
 
 }

@@ -2,6 +2,9 @@ package com.JGG.Section40.DAO;
 
 import com.JGG.Section40.Account;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 //321, 333
 
 @Component
@@ -54,6 +57,21 @@ public class AccountDAO {
     //329
     public void doWork(){
         System.out.println(getClass()+"329. Executing doWork");
+    }
+
+    //341
+    public List<Account> findAccounts(){
+        List<Account> accounts = new ArrayList<>();
+        // create sample accounts
+        Account temp1= new Account("John", "silver");
+        Account temp2= new Account("John2", "silver2");
+        Account temp3= new Account("John3", "silver3");
+        // add the to our account lists
+        accounts.add(temp1);
+        accounts.add(temp2);
+        accounts.add(temp3);
+
+        return accounts;
     }
 
 
