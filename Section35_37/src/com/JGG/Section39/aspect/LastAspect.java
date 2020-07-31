@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 //336
 @Aspect
 @Component
-@Order(5)
-public class CloudLogAsyncAspect {
+@Order(777)
+public class LastAspect {
 
     @Before("com.JGG.Section39.aspect.AopExpressions.forDaoPackageExcludingSetter()")
     public void logToCloud(){
-        System.out.println("\n======>>> 331. Performing API ANALYTICS. Order 5");
+        System.out.println("\n======>>> 337. Im the last aspect. Order 777");
     }
 }
