@@ -1,4 +1,4 @@
-package com.JGG.Section39.aspect;
+package com.JGG.Section40.aspect;
 
 
 import org.aspectj.lang.annotation.Aspect;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Order(777)
 public class LastAspect {
 
-    @Before("com.JGG.Section39.aspect.AopExpressions.forDaoPackageExcludingSetter()")
+    @Before("com.JGG.Section40.aspect.AopExpressions.forDaoPackageExcludingSetter()")
     public void logToCloud(){
         System.out.println("\n======>>> 337. Im the last aspect. Order 777");
     }

@@ -1,6 +1,6 @@
-package com.JGG.Section39.DAO;
+package com.JGG.Section40.DAO;
 
-import com.JGG.Section39.Account;
+import com.JGG.Section40.Account;
 import org.springframework.stereotype.Component;
 //321, 333
 
