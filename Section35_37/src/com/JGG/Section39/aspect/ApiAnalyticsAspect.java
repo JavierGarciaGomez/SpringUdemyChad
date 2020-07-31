@@ -1,4 +1,4 @@
 package com.JGG.Section39.aspect;
 
-public class AopExpressions {
+public class ApiAnalyticsAspect {
 }
