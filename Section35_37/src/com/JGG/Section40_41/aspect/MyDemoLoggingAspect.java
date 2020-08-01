@@ -1,6 +1,6 @@
-package com.JGG.Section40.aspect;
+package com.JGG.Section40_41.aspect;
 
-import com.JGG.Section40.Account;
+import com.JGG.Section40_41.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -21,7 +21,7 @@ public class MyDemoLoggingAspect {
 
 
     //331, 338 JoinPoint
-    @Before("com.JGG.Section40.aspect.AopExpressions.forDaoPackage()") // before the pointcut
+    @Before("com.JGG.Section40_41.aspect.AopExpressions.forDaoPackage()") // before the pointcut
     public void beforeAddAccountAdvice(JoinPoint joinPoint) {
         System.out.println("\n======>>> 331. Executing @Before any Method with any parameters. Order 27");
 
@@ -43,14 +43,14 @@ public class MyDemoLoggingAspect {
 
 
     //334
-    @Before("com.JGG.Section40.aspect.AopExpressions.forDaoPackageExcludingSetter()")
+    @Before("com.JGG.Section40_41.aspect.AopExpressions.forDaoPackageExcludingSetter()")
     public void beforeDaoPackageExcludingSetter() {
         System.out.println("\n======>>> 334. Print before methods excluding setters");
     }
 
     //342 add a new advice for@AfterReturning on findAccountsMethod
     @AfterReturning(
-            pointcut ="execution(* com.JGG.Section40.DAO.AccountDAO.findAccounts(..))",
+            pointcut ="execution(* com.JGG.Section40_41.DAO.AccountDAO.findAccounts(..))",
             returning ="result")
     public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
         String method = joinPoint.getSignature().toShortString();

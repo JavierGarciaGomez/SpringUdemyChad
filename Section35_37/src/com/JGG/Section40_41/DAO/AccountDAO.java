@@ -1,6 +1,6 @@
-package com.JGG.Section41.DAO;
+package com.JGG.Section40_41.DAO;
 
-import com.JGG.Section41.Account;
+import com.JGG.Section40_41.Account;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -59,13 +59,8 @@ public class AccountDAO {
         System.out.println(getClass()+"329. Executing doWork");
     }
 
-    //341, 346
-    public List<Account> findAccounts(boolean tripWire) {
-        // for academic purpose ... simulate an exception
-        if(tripWire==true){
-            throw new RuntimeException("No soup for you");
-        }
-
+    //341
+    public List<Account> findAccounts(){
         List<Account> accounts = new ArrayList<>();
         // create sample accounts
         Account temp1= new Account("John", "silver");
@@ -78,6 +73,8 @@ public class AccountDAO {
 
         return accounts;
     }
+
+
+
+
 }
-
-

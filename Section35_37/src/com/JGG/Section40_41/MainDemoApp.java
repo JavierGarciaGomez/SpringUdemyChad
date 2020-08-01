@@ -1,6 +1,6 @@
-package com.JGG.Section40;
+package com.JGG.Section40_41;
 
-import com.JGG.Section40.DAO.AccountDAO;
+import com.JGG.Section40_41.DAO.AccountDAO;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainDemoApp {

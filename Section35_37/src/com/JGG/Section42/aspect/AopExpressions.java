@@ -1,4 +1,4 @@
-package com.JGG.Section40.aspect;
+package com.JGG.Section42.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -8,11 +8,11 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class AopExpressions {
     //331
-    @Pointcut("execution(* com.JGG.Section40.DAO.*.*(..))")
+    @Pointcut("execution(* com.JGG.Section40_41.DAO.*.*(..))")
     public void forDaoPackage(){    }
 
     //334 create pointcut for setter
-    @Pointcut("execution(* com.JGG.Section40.DAO.*.set*(..))")
+    @Pointcut("execution(* com.JGG.Section40_41.DAO.*.set*(..))")
     private void setterMethods(){
     }
     //334 create pointcut for include but exclude setter

@@ -1,6 +1,6 @@
-package com.JGG.Section41.aspect;
+package com.JGG.Section42.aspect;
 
-import com.JGG.Section41.Account;
+import com.JGG.Section42.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -22,7 +22,7 @@ public class MyDemoLoggingAspect {
 
 
     //331, 338 JoinPoint
-    @Before("com.JGG.Section41.aspect.AopExpressions.forDaoPackage()") // before the pointcut
+    @Before("com.JGG.Section42.aspect.AopExpressions.forDaoPackage()") // before the pointcut
     public void beforeAddAccountAdvice(JoinPoint joinPoint) {
         System.out.println("\n======>>> 331. Executing @Before any Method with any parameters. Order 27");
 
@@ -44,14 +44,14 @@ public class MyDemoLoggingAspect {
 
 
     //334
-    @Before("com.JGG.Section41.aspect.AopExpressions.forDaoPackageExcludingSetter()")
+    @Before("com.JGG.Section42.aspect.AopExpressions.forDaoPackageExcludingSetter()")
     public void beforeDaoPackageExcludingSetter() {
         System.out.println("\n======>>> 334. Print before methods excluding setters");
     }
 
     //342 add a new advice for@AfterReturning on findAccountsMethod
     @AfterReturning(
-            pointcut ="execution(* com.JGG.Section41.DAO.AccountDAO.findAccounts(..))",
+            pointcut ="execution(* com.JGG.Section42.DAO.AccountDAO.findAccounts(..))",
             returning ="result")
     public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
         String method = joinPoint.getSignature().toShortString();
@@ -73,7 +73,7 @@ public class MyDemoLoggingAspect {
 
     //346 afterThrowingFindAccountsAdvice
     @AfterThrowing(
-            pointcut = "execution(* com.JGG.Section41.DAO.AccountDAO.findAccounts(..))",
+            pointcut = "execution(* com.JGG.Section42.DAO.AccountDAO.findAccounts(..))",
             throwing = "exception")
     public void afterThrowingFindAccountsAdvice(JoinPoint joinPoint, Throwable exception){
         //print out which method We are advising on

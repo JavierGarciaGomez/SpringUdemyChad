@@ -1,4 +1,4 @@
-package com.JGG.Section40.aspect;
+package com.JGG.Section42.aspect;
 
 
 import org.aspectj.lang.annotation.Aspect;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Order(235)
 public class ApiAnalyticsAspect {
     //331
-    @Before("com.JGG.Section40.aspect.AopExpressions.forDaoPackageExcludingSetter()")
+    @Before("com.JGG.Section42.aspect.AopExpressions.forDaoPackageExcludingSetter()")
     public void performApiAnalyitics(){
         System.out.println("\n======>>> 331. Performing API ANALYTICS. ORder 235");
     }

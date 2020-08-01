@@ -1,4 +1,4 @@
-package com.JGG.Section41;
+package com.JGG.Section40_41;
 //328
 public class Account {
     private String name;
