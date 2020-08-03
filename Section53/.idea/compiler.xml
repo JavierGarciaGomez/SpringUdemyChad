@@ -11,6 +11,7 @@
         <module name="Section49" />
         <module name="Section48" />
         <module name="Section47" />
+        <module name="Section53" />
         <module name="Section52" />
       </profile>
     </annotationProcessing>

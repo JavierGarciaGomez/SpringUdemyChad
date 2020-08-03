@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 
-//388, 395, 406
+//388, 395, 406, 418
 @Configuration
 @EnableWebSecurity
 public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -21,13 +21,15 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser(users.username("susan").password("test123").roles("EMPLOYEE", "ADMIN"));
     }
 
-    //395, 406
-
+    //395, 406, 418
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests() // Restrict access based on the HttpServletRequest
-                .anyRequest()
-                .authenticated() // any request must be authenticated
+                // .anyRequest() replaced in 418
+                // .authenticated() // replaced in 418 any request must be authenticated
+                .antMatchers("/").hasRole("EMPLOYEE")
+                .antMatchers("/leaders/**").hasRole("MANAGER")
+                .antMatchers("/systems/**").hasRole("ADMIN")
                 .and()
                 .formLogin() // customization formlogin
                 .loginPage("/showMyLoginPage")
@@ -35,6 +37,9 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and() // added in 406
                 .logout()
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling() // added in 421
+                .accessDeniedPage("/acces-denied");
     }
 }
