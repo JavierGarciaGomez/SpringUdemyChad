@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.JGG</groupId>
-    <artifactId>Section53</artifactId>
+    <artifactId>Section54</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Section53 Maven Webapp</name>
+    <name>Section54 Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -70,6 +70,19 @@
             <version>1.2</version>
         </dependency>
 
+        <!--430 Add MySQL and C3P0 support        -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.20</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.5</version>
+        </dependency>
+
         <!-- to compensate for java 9+ not including jaxb -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -86,7 +99,7 @@
     </dependencies>
 
     <build>
-        <finalName>Section53</finalName>
+        <finalName>Section54</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>

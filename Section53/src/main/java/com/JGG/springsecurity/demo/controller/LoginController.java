@@ -13,7 +13,7 @@ public class LoginController {
     }
 
     // 421 add request mapping ofr /access denied
-    @GetMapping("/accessDenied")
+    @GetMapping("/access-denied")
     public String showAccessDenied(){
         return "access-denied";
     }

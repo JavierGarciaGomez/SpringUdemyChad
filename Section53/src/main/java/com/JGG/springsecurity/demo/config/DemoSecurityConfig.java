@@ -40,6 +40,6 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .exceptionHandling() // added in 421
-                .accessDeniedPage("/acces-denied");
+                .accessDeniedPage("/access-denied");
     }
 }
