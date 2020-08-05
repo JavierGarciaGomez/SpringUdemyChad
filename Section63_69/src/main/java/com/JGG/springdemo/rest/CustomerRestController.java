@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//487, 489, 492, 496
+//487, 489, 492, 496, 499
 @RestController
 @RequestMapping("/api")
 public class CustomerRestController {
@@ -40,5 +40,10 @@ public class CustomerRestController {
         return customer;
     }
 
-
+    //499 Update existing customer
+    @PutMapping("/customers")
+    public Customer updateCustomer(@RequestBody Customer customer){
+        customerService.saveCustomer(customer);
+        return customer;
+    }
 }
