@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//487, 489
+//487, 489, 492
 @RestController
 @RequestMapping("/api")
 public class CustomerRestController {
@@ -27,7 +27,13 @@ public class CustomerRestController {
     @GetMapping("/customers/{customerId}")
     public Customer getCustomer(@PathVariable int customerId){
         Customer customer = customerService.getCustomer(customerId);
+        //492
+        if(customer==null){
+            throw new CustomerNotFoundException("Customer id not found - "+customerId);
+        }
+
         return customer;
+
     }
 
 
