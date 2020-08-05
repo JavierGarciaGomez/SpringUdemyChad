@@ -3,14 +3,11 @@ package com.JGG.springdemo.rest;
 import com.JGG.springdemo.entity.Customer;
 import com.JGG.springdemo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//487, 489, 492
+//487, 489, 492, 496
 @RestController
 @RequestMapping("/api")
 public class CustomerRestController {
@@ -31,9 +28,16 @@ public class CustomerRestController {
         if(customer==null){
             throw new CustomerNotFoundException("Customer id not found - "+customerId);
         }
-
         return customer;
+    }
 
+    //496 add mapping for post /customers - add new
+    @PostMapping("/customers")
+    public Customer addCustomer(@RequestBody Customer customer){
+        // set id to 0. So is a new iten and not an update
+        customer.setId(0);
+        customerService.saveCustomer(customer);
+        return customer;
     }
 
 
