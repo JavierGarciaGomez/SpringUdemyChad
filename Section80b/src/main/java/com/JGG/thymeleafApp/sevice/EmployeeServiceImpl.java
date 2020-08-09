@@ -8,7 +8,7 @@ import com.JGG.thymeleafApp.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+//550
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -18,10 +18,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
 		employeeRepository = theEmployeeRepository;
 	}
-	
+
 	@Override
 	public List<Employee> findAll() {
-		return employeeRepository.findAll();
+		return employeeRepository.findAllByOrderByLastNameAsc();
 	}
 
 	@Override
